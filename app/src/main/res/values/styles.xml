@@ -1,0 +1,60 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/pink_light</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+    </style>
+
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.Translucent" parent="AppTheme" />
+
+    <style name="SplashActivityTheme" parent="AppTheme.FullScreen">
+        <item name="android:windowBackground">@drawable/layer_list_splash</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ToolbarBase" />
+
+    <style name="ToolbarBase" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Actionbar HomeAsUp and overflow button color -->
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:textColorSecondary">@color/pink_light</item>
+        <item name="actionOverflowMenuStyle">@style/ToolbarOverflowMenu</item>
+        <item name="actionOverflowButtonStyle">@style/ToolbarOverflowButton</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/white</item>
+        <!--<item name="title">@string/app_name</item>-->
+    </style>
+
+    <style name="ToolbarOverflowMenu" parent="ToolbarOverflowMenuBase">
+        <item name="android:dropDownVerticalOffset">@dimen/spacing_minus_4</item>
+    </style>
+
+    <style name="ToolbarOverflowMenuBase" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+    </style>
+
+
+    <style name="ToolbarOverflowButton" parent="Widget.AppCompat.ActionButton.Overflow">
+        <!--<item name="android:src">@drawable/ic_add_white_24dp</item>-->
+    </style>
+
+    <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsv_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_layout_main">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_140"
+            android:contentDescription="@string/sample_des_placeholder"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_bg_layout_city"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/tv_favorite"
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginEnd="@dimen/spacing_16"
+            android:layout_marginRight="@dimen/spacing_16"
+            android:background="@drawable/shape_constraint_favorite"
+            android:contentDescription="@string/sample_des_placeholder"
+            android:padding="@dimen/spacing_5"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_header"/>
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_16"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:text="@string/sample_layout_city"
+            android:textSize="@dimen/font_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_header"/>
+
+        <TextView
+            android:id="@+id/tv_label_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_16"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:text="@string/sample_layout_camera"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_city"/>
+
+        <TextView
+            android:id="@+id/tv_label_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_layout_settings"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintBaseline_toBaselineOf="@+id/et_settings"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_camera"/>
+
+        <android.support.constraint.Barrier
+            android:id="@+id/barrier_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tv_label_camera,tv_label_settings"/>
+
+        <EditText
+            android:id="@+id/et_camera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_8"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/sample_layout_camera_value"
+            android:textColor="@color/black"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_label_camera"
+            app:layout_constraintStart_toEndOf="@+id/barrier_label"/>
+
+
+        <EditText
+            android:id="@+id/et_settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/sample_layout_settings_value"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/et_camera"
+            app:layout_constraintTop_toBottomOf="@+id/et_camera"/>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_16"
+            app:cardCornerRadius="@dimen/size_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_settings">
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_4"
+                android:ellipsize="end"
+                android:text="@string/sample_layout_description"
+                android:textSize="@dimen/font_15"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <Button
+            android:id="@+id/btn_guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_center_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/cv_description"/>
+
+        <Button
+            android:id="@+id/btn_guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintStart_toEndOf="@+id/guideline_center_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/cv_description"/>
+
+        <Button
+            android:id="@+id/btn_chain_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintEnd_toStartOf="@+id/btn_chain_center"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_guideline_left"/>
+
+        <Button
+            android:id="@+id/btn_chain_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintEnd_toStartOf="@+id/btn_chain_right"
+            app:layout_constraintStart_toEndOf="@+id/btn_chain_left"
+            app:layout_constraintTop_toBottomOf="@+id/btn_guideline_left"/>
+
+        <Button
+            android:id="@+id/btn_chain_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_chain_center"
+            app:layout_constraintTop_toBottomOf="@+id/btn_guideline_left"/>
+
+
+        <android.support.constraint.Group
+            android:id="@+id/group_chain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="btn_chain_left,btn_chain_center,btn_chain_right"/>
+
+        <Button
+            android:id="@+id/btn_weight_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintEnd_toStartOf="@+id/btn_weight_center"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_chain_left"/>
+
+        <Button
+            android:id="@+id/btn_weight_center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintEnd_toStartOf="@+id/btn_weight_right"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btn_weight_left"
+            app:layout_constraintTop_toBottomOf="@+id/btn_chain_left"/>
+
+        <Button
+            android:id="@+id/btn_weight_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_weight_center"
+            app:layout_constraintTop_toBottomOf="@+id/btn_chain_left"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

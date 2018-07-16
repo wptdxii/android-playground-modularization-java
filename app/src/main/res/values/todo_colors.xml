@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="todo_color_primary">#ff455A64</color>
+    <color name="todo_color_primary_dark">#ff263238</color>
+    <color name="todo_color_accent">#ffD50000</color>
+</resources>

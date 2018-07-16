@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="todo_app_name">TO-DO-MVP</string>
+    <string name="todo_tasks_fragment_menu_filter">Filter</string>
+    <string name="todo_tasks_fragment_no_todos">You have no TO-DOs!</string>
+    <string name="todo_tasks_fragment_no_active_todos">You have no active tasks!</string>
+    <string name="todo_tasks_fragment_no_completed_todos">You have no completed TO-DOs!</string>
+    <string name="todo_tasks_fragment_filter_label_all">All TO-DOs</string>
+    <string name="todo_tasks_fragment_filter_label_active">Active TO-DOs</string>
+    <string name="todo_tasks_fragment_filter_label_completed">Completed TO-DOs</string>
+    <string name="todo_tasks_fragment_task_marked_complete">Task marked complete</string>
+    <string name="todo_tasks_fragment_task_marked_active">Task marked active</string>
+    <string name="todo_tasks_fragment_task_completed_cleared">Task completed cleared</string>
+    <string name="todo_tasks_fragment_filter_popup_all">All</string>
+    <string name="todo_tasks_fragment_filter_popup_active">Active</string>
+    <string name="todo_tasks_fragment_filter_popup_completed">Completed</string>
+    <string name="todo_add_new_task_activity_hint_title">Title</string>
+    <string name="todo_add_new_task_activity_hint_description">Enter your TO-DO here.</string>
+    <string name="todo_add_new_task_activity_title_add">New TO-DO</string>
+    <string name="todo_add_new_task_activity_title_edit">Edit TO-DO</string>
+    <string name="todo_tasks_fragment_menu_clear_all">Clear All</string>
+    <string name="todo_tasks_fragment_all_task_cleared">All Tasks Cleared</string>
+    <string name="todo_title_new_task">NEW TO-DO</string>
+    <string name="todo_title_edit_task">EDIT TO-DO</string>
+    <string name="todo_task_no_empty">TO DOs cannot be empty</string>
+    <string name="todo_task_details_no_data">No data</string>
+    <string name="todo_task_details_loading">Loading...</string>
+    <string name="todo_mvp_title">TO-DO-MVP</string>
+    <string name="todo_task_details_delete_task">DELETE TASK</string>
+    <string name="todo_statistics_title">Statistics</string>
+    <string name="todo_statistics_active_tasks">Active tasks: %1$s</string>
+    <string name="todo_statistics_completed_tasks">Completed tasks: %1$s</string>
+    <string name="todo_loading">Loading...</string>
+    <string name="todo_statistics_error_loading">Error loading statistics.</string>
+    <string name="todo_tasks_fragment_local_source">Local Source</string>
+    <string name="todo_tasks_fragment_remote_source">Remote Source</string>
+</resources>

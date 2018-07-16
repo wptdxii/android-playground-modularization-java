@@ -1,0 +1,84 @@
+import static org.apache.tools.ant.taskdefs.condition.Os.FAMILY_WINDOWS
+import static org.apache.tools.ant.taskdefs.condition.Os.isFamily
+
+def keyStorePath
+def keyStoreFile
+def keyStoreProperties
+def channelFile
+if (isFamily(FAMILY_WINDOWS)) {
+    keyStorePath = System.getenv('USERPROFILE') + File.separator + '.ssh' + File.separator
+} else {
+    keyStorePath = System.getenv('HOME') + File.separator + '.ssh' + File.separator
+}
+keyStoreFile = keyStorePath + 'playground.jks'
+keyStoreProperties = keyStorePath + 'playground.properties'
+Properties props = new Properties()
+if (new File(keyStoreProperties).exists()) {
+    props.load(new FileInputStream(file(keyStoreProperties)))
+}
+channelFile = keyStorePath + 'channel.txt'
+
+ext {
+
+    signings = [
+            storeFile    : keyStoreFile,
+            storePassword: props.getProperty('KEYSTORE_PWD'),
+            keyAlias     : props.getProperty('KEY_ALIAS'),
+            keyPassword  : props.getProperty('KEY_PWD'),
+    ]
+
+    testings = [
+            junit   : "junit:junit:4.12",
+            runner  : "com.android.support.test:runner:1.0.2",
+            espresso: "com.android.support.test.espresso:espresso-core:3.0.2",
+    ]
+
+    supports = [
+            v7          : "com.android.support:appcompat-v7:$versions.support",
+            design      : "com.android.support:design:$versions.support",
+            annotations : "com.android.support:support-annotations:$versions.support",
+            constraint  : "com.android.support.constraint:constraint-layout:1.1.2",
+            cardView    : "com.android.support:cardview-v7:$versions.support",
+            recyclerView: "com.android.support:recyclerview-v7:$versions.support",
+    ]
+
+    di = [
+            butterknife          : "com.jakewharton:butterknife:$versions.butterknife",
+            butterknifeCompiler  : "com.jakewharton:butterknife-compiler:$versions.butterknife",
+            dagger               : "com.google.dagger:dagger:$versions.dagger",
+            daggerCompiler       : "com.google.dagger:dagger-compiler:$versions.dagger",
+            daggerAndroid        : "com.google.dagger:dagger-android:$versions.dagger",
+            daggerAndroidSupport : "com.google.dagger:dagger-android-support:$versions.dagger",
+            daggerAndroidCompiler: "com.google.dagger:dagger-android-processor:$versions.dagger",
+    ]
+
+    room = [
+            runtime : "android.arch.persistence.room:runtime:$versions.room",
+            compiler: "android.arch.persistence.room:compiler:$versions.room",
+            rxjava  : "android.arch.persistence.room:rxjava2:$versions.room",
+            test    : "android.arch.persistence.room:testing:$versions.room",
+    ]
+
+    channels = [
+            vasdolly: "com.leon.channel:helper:$versions.channel",
+            file    : channelFile,
+    ]
+
+    rx = [
+            android: "io.reactivex.rxjava2:rxandroid:2.0.2",
+            java   : "io.reactivex.rxjava2:rxjava:2.1.16",
+    ]
+
+    net = [
+            gson              : "com.google.code.gson:gson:2.8.5",
+            retrofit          : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            rxjavaAdapter     : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            gsonConverter     : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+            loggingInterceptor: "com.github.ihsanbal:LoggingInterceptor:2.0.6",
+    ]
+
+    log = [
+            logger: "com.orhanobut:logger:2.2.0",
+            timber: "com.jakewharton.timber:timber:4.7.1",
+    ]
+}

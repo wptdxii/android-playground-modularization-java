@@ -1,0 +1,42 @@
+apply from: "config.gradle"
+apply plugin: "com.github.ben-manes.versions"
+
+buildscript {
+    ext.versions = [
+            compileSdk : 27,
+            minSdk     : 14,
+            targetSdk  : 27,
+            code       : 1,
+            name       : '1.0.0',
+            support    : '27.1.1',
+            butterknife: '8.8.1',
+            room       : '1.1.1',
+            channel    : '1.1.9',
+            dagger     : '2.16',
+            retrofit   : '2.4.0',
+            java       : JavaVersion.VERSION_1_8
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath "com.leon.channel:plugin:$versions.channel"
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,106 @@
+if (asLibrary.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    compileOptions {
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
+    }
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.code
+        versionName versions.name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file(signings.storeFile)
+            storePassword signings.storePassword
+            keyAlias signings.keyAlias
+            keyPassword signings.keyPassword
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+            useProguard false
+        }
+
+        release {
+            signingConfig signingConfigs.config
+            minifyEnabled false
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            postprocessing {
+//                removeUnusedCode true
+//                removeUnusedResources true
+//                obfuscate true
+//                optimizeCode true
+//                proguardFile 'proguard-rules.pro'
+//            }
+        }
+    }
+
+    flavorDimensions "buildType"
+    productFlavors {
+
+        mock {
+            dimension "buildType"
+            if (!asLibrary.toBoolean()) {
+                applicationIdSuffix = ".mock"
+            }
+        }
+
+        prod {
+            dimension "buildType"
+        }
+
+    }
+
+    variantFilter { variant ->
+        if ('release' == variant.buildType.name
+                && 'mock' == variant.getFlavors().get(0).name) {
+            variant.setIgnore(true)
+        }
+    }
+
+//    applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            outputFileName = "Playground-v${variant.versionName}.apk"
+//        }
+//    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (asLibrary.toBoolean()) {
+                manifest.srcFile 'src/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/release/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':sdk:framekit')
+
+    annotationProcessor di.daggerCompiler
+    annotationProcessor di.daggerAndroidCompiler
+
+    testImplementation testings.junit
+    androidTestImplementation testings.runner
+    androidTestImplementation testings.espresso
+}

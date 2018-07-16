@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/todo_vector_ic_filter"
+        android:title="@string/todo_tasks_fragment_menu_filter"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/action_clear_completed"
+        android:title="@string/todo_tasks_fragment_menu_clear_completed"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_clear_all"
+        android:title="@string/todo_tasks_fragment_menu_clear_all"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_local_source"
+        android:title="@string/todo_tasks_fragment_local_source"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_Remote_Source"
+        android:title="@string/todo_tasks_fragment_remote_source"
+        app:showAsAction="never" />
+</menu>

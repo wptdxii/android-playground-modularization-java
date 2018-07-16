@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    compileOptions {
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
+    }
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.code
+        versionName versions.name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api supports.v7
+    api supports.constraint
+    api supports.design
+    api supports.cardView
+
+    api di.dagger
+    annotationProcessor di.daggerCompiler
+    api di.daggerAndroid
+    api di.daggerAndroidSupport
+    annotationProcessor di.daggerAndroidCompiler
+
+    api net.gson
+    api net.retrofit
+    api net.rxjavaAdapter
+    api net.gsonConverter
+    api(net.loggingInterceptor) {
+        exclude group: 'org.json', module: 'json'
+    }
+
+    api rx.java
+    api rx.android
+
+    api log.logger
+    api log.timber
+
+}

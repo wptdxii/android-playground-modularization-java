@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/action_list"
+            android:icon="@drawable/vector_ic_list"
+            android:title="@string/todo_activity_tasks_drawer_action_list" />
+        <item
+            android:id="@+id/action_statistics"
+            android:icon="@drawable/vector_ic_statistics"
+            android:title="@string/todo_activity_tasks_drawer_action_statistics" />
+    </group>
+
+</menu>

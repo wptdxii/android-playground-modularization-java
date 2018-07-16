@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+apply plugin: 'channel'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    compileOptions {
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
+    }
+
+    defaultConfig {
+        applicationId "com.wptdxii.java.playground"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.code
+        versionName versions.name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL_GANK", "\"${BASE_URL_GANK}\""
+        buildConfigField "String", "BASE_URL_DOUBAN", "\"${BASE_URL_DOUBAN}\""
+    }
+
+    signingConfigs {
+        config {
+            storeFile file(signings.storeFile)
+            storePassword signings.storePassword
+            keyAlias signings.keyAlias
+            keyPassword signings.keyPassword
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            signingConfig signingConfigs.config
+            useProguard false
+        }
+
+        release {
+            signingConfig signingConfigs.config
+            minifyEnabled false
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            postprocessing {
+//                removeUnusedCode true
+//                removeUnusedResources true
+//                obfuscate true
+//                optimizeCode true
+//                proguardFile 'proguard-rules.pro'
+//            }
+        }
+    }
+
+    flavorDimensions "buildType"
+    productFlavors {
+
+        mock {
+            dimension "buildType"
+            applicationIdSuffix = ".mock"
+        }
+
+        prod {
+            dimension "buildType"
+        }
+
+    }
+
+    variantFilter { variant ->
+        if ('release' == variant.buildType.name
+                && 'mock' == variant.getFlavors().get(0).name) {
+            variant.setIgnore(true)
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "Playground-v${variant.versionName}.apk"
+        }
+    }
+
+    // for VasDolly
+    channel {
+        channelFile = file(channels.file)
+        apkNameFormat = 'Playground-v${versionName}-${flavorName}-${buildType}'
+        isFastMode = false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    if (asLibrary.toBoolean()) {
+        implementation project(':features:todo')
+    } else {
+        implementation project(':sdk:framekit')
+    }
+
+    implementation di.butterknife
+    annotationProcessor di.butterknifeCompiler
+
+//    implementation di.dagger
+    annotationProcessor di.daggerCompiler
+//    implementation di.daggerAndroid
+//    implementation di.daggerAndroidSupport
+    annotationProcessor di.daggerAndroidCompiler
+
+    implementation room.runtime
+    implementation room.rxjava
+    annotationProcessor room.compiler
+    testImplementation room.test
+
+//    implementation rx.java
+//    implementation rx.android
+
+    implementation channels.vasdolly
+
+    testImplementation testings.junit
+    androidTestImplementation testings.runner
+    androidTestImplementation testings.espresso
+}
